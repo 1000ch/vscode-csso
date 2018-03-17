@@ -1,0 +1,43 @@
+{
+  "name": "csso",
+  "private": true,
+  "version": "0.0.0",
+  "displayName": "csso",
+  "description": "Minify CSS with CSSO",
+  "publisher": "1000ch",
+  "author": "1000ch",
+  "repository": "https://github.com/1000ch/vscode-csso",
+  "homepage": "https://github.com/1000ch/vscode-csso#readme",
+  "bugs": "https://github.com/1000ch/vscode-csso/issues",
+  "license": "MIT",
+  "engines": {
+    "vscode": ">=1.20.0"
+  },
+  "qna": "https://stackoverflow.com/questions/tagged/vscode+csso",
+  "activationEvents": [
+    "onCommand:csso.minify"
+  ],
+  "main": "extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "csso configuration options",
+      "properties": {
+        "csso.restructure": {
+          "type": "boolean",
+          "default": true,
+          "description": "Structure optimisations"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "csso.minify",
+        "title": "Minify CSS"
+      }
+    ]
+  },
+  "dependencies": {
+    "csso": "^3.5.0"
+  }
+}
