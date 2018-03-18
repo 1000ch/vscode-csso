@@ -1,26 +1,7 @@
 import * as vscode from 'vscode';
-const { workspace, window, commands, Position, Range } = vscode;
+import setText from 'vscode-set-text';
+const { workspace, window, commands } = vscode;
 const csso = require('csso');
-
-function setText(text: string) {
-  const { activeTextEditor } = window;
-
-  if (!activeTextEditor) {
-    return Promise.reject(null);
-  }
-
-  const { document } = activeTextEditor;
-
-  return new Promise(resolve => {
-    activeTextEditor.edit(builder => {
-      const lastLine = document.lineAt(document.lineCount - 2);
-      const start = new Position(0, 0);
-      const end = new Position(document.lineCount - 1, lastLine.text.length);
-      builder.replace(new Range(start, end), text);
-      resolve();
-    });
-  });
-}
 
 function canApply(document: vscode.TextDocument) {
   return document.languageId === 'css';
