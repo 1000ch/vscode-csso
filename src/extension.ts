@@ -1,11 +1,18 @@
-const { workspace, window, commands, Position, Range } = require('vscode');
+import * as vscode from 'vscode';
+const { workspace, window, commands, Position, Range } = vscode;
 const csso = require('csso');
 
-function setText(text) {
-  const { document } = window.activeTextEditor;
+function setText(text: string) {
+  const { activeTextEditor } = window;
+
+  if (!activeTextEditor) {
+    return Promise.reject(null);
+  }
+
+  const { document } = activeTextEditor;
 
   return new Promise(resolve => {
-    window.activeTextEditor.edit(builder => {
+    activeTextEditor.edit(builder => {
       const lastLine = document.lineAt(document.lineCount - 2);
       const start = new Position(0, 0);
       const end = new Position(document.lineCount - 1, lastLine.text.length);
@@ -15,17 +22,19 @@ function setText(text) {
   });
 }
 
-function cannotApply(document) {
-  const { languageId, fileName } = document;
-
-  return languageId !== 'css';
+function canApply(document: vscode.TextDocument) {
+  return document.languageId === 'css';
 }
 
-exports.activate = ({ subscriptions }) => {
+export function activate(context: vscode.ExtensionContext) {
   const minify = commands.registerCommand('csso.minify', async () => {
+    if (!window.activeTextEditor) {
+      return;
+    }
+
     const { document } = window.activeTextEditor;
 
-    if (cannotApply(document)) {
+    if (!canApply(document)) {
       return;
     }
 
@@ -36,7 +45,7 @@ exports.activate = ({ subscriptions }) => {
     await setText(css);
   });
 
-  subscriptions.push(minify);
-};
+  context.subscriptions.push(minify);
+}
 
-exports.deactivate = () => {};
+export function deactivate() {}
