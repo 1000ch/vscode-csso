@@ -19,8 +19,10 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
+    const cssoConfig = workspace.getConfiguration('csso');
+
     const { css } = csso.minify(document.getText(), {
-      restructure: workspace.getConfiguration('csso').get('restructure')
+      restructure: cssoConfig.get('restructure')
     })
 
     await setText(css);
