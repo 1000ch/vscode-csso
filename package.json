@@ -13,7 +13,7 @@
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
     "vscode:prepublish": "npm run build",
-    "build": "tsc -p . && uglifyjs -o out/extension.js out/extension.js"
+    "build": "tsc -p . && terser --output out/extension.js -- out/extension.js"
   },
   "engines": {
     "vscode": "^1.20.0"
@@ -49,8 +49,8 @@
   "devDependencies": {
     "@types/csso": "^3.5.0",
     "@types/node": "^10.12.0",
-    "typescript": "^3.1.3",
-    "uglify-es": "^3.3.9",
-    "vscode": "^1.1.21"
+    "terser": "^4.0.0",
+    "typescript": "^3.4.5",
+    "vscode": "^1.1.34"
   }
 }
