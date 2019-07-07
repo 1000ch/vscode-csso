@@ -43,14 +43,14 @@
     ]
   },
   "dependencies": {
-    "csso": "^3.5.0",
+    "csso": "^3.5.1",
     "vscode-set-text": "^1.0.0"
   },
   "devDependencies": {
-    "@types/csso": "^3.5.0",
-    "@types/node": "^10.12.0",
-    "terser": "^4.0.0",
-    "typescript": "^3.4.5",
-    "vscode": "^1.1.34"
+    "@types/csso": "^3.5.1",
+    "@types/node": "^12.0.12",
+    "terser": "^4.1.0",
+    "typescript": "^3.5.2",
+    "vscode": "^1.1.35"
   }
 }
