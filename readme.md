@@ -1,5 +1,8 @@
 # vscode-csso
 
+[![Dependency Status](https://david-dm.org/1000ch/vscode-csso.svg)](https://david-dm.org/1000ch/vscode-csso)
+[![devDependency Status](https://david-dm.org/1000ch/vscode-csso/dev-status.svg)](https://david-dm.org/1000ch/vscode-csso?type=dev)
+
 Minify CSS with [CSSO](http://github.com/css/csso).
 
 ## Install
