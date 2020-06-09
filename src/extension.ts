@@ -1,13 +1,12 @@
-import * as vscode from 'vscode';
+import { ExtensionContext, TextDocument, workspace, window, commands } from 'vscode';
 import setText from 'vscode-set-text';
-const { workspace, window, commands } = vscode;
 const csso = require('csso');
 
-function canApply(document: vscode.TextDocument) {
+function canApply(document: TextDocument) {
   return document.languageId === 'css';
 }
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: ExtensionContext) {
   const minify = commands.registerCommand('csso.minify', async () => {
     if (!window.activeTextEditor) {
       return;
