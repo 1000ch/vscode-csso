@@ -11,12 +11,11 @@
   "bugs": "https://github.com/1000ch/vscode-csso/issues",
   "license": "MIT",
   "scripts": {
-    "postinstall": "node ./node_modules/vscode/bin/install",
     "vscode:prepublish": "npm run build",
     "build": "tsc -p . && terser --output out/extension.js -- out/extension.js"
   },
   "engines": {
-    "vscode": "^1.20.0"
+    "vscode": "^1.45.1"
   },
   "qna": "https://stackoverflow.com/questions/tagged/vscode+csso",
   "activationEvents": [
@@ -49,8 +48,8 @@
   "devDependencies": {
     "@types/csso": "^3.5.1",
     "@types/node": "^12.12.42",
+    "@types/vscode": "^1.45.1",
     "terser": "^4.7.0",
-    "typescript": "^3.9.3",
-    "vscode": "^1.1.37"
+    "typescript": "^3.9.3"
   }
 }
