@@ -12,7 +12,7 @@
   "license": "MIT",
   "scripts": {
     "vscode:prepublish": "npm run build",
-    "build": "tsc -p . && terser --output out/extension.js -- out/extension.js"
+    "build": "tsc"
   },
   "engines": {
     "vscode": "^1.45.1"
@@ -47,9 +47,7 @@
   },
   "devDependencies": {
     "@types/csso": "^3.5.1",
-    "@types/node": "^12.12.42",
     "@types/vscode": "^1.45.1",
-    "terser": "^4.7.0",
     "typescript": "^3.9.3"
   }
 }
