@@ -11,7 +11,7 @@ Execute `Extensions: Install Extensions` command from [Command Palette](https://
 
 ## Usage
 
-In a CSS file, open the Command Palette (<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>P</kbd>) and choose **Minify CSS**.
+In a CSS file, open the Command Palette (<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>P</kbd>) and choose **Minify CSS**. You can also execute that command from context menu of Editor.
 
 ## Config
 
