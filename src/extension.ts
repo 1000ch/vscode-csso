@@ -1,6 +1,6 @@
 import { ExtensionContext, TextDocument, workspace, window, commands } from 'vscode';
 import setText from 'vscode-set-text';
-const csso = require('csso');
+import csso from 'csso';
 
 function canApply(document: TextDocument) {
   return document.languageId === 'css';
