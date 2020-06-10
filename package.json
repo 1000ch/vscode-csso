@@ -23,6 +23,21 @@
   ],
   "main": "out/extension.js",
   "contributes": {
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == css || editorLangId == css",
+          "command": "csso.minify",
+          "group": "1_modification"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "csso.minify",
+        "title": "Minify CSS"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "csso configuration options",
@@ -33,13 +48,7 @@
           "description": "Structure optimisations"
         }
       }
-    },
-    "commands": [
-      {
-        "command": "csso.minify",
-        "title": "Minify CSS"
-      }
-    ]
+    }
   },
   "dependencies": {
     "csso": "^4.0.3",
