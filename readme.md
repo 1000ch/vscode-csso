@@ -11,7 +11,13 @@ Execute `Extensions: Install Extensions` command from [Command Palette](https://
 
 ## Usage
 
-In a CSS file, open the Command Palette (<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>P</kbd>) and choose **Minify CSS**. You can also execute that command from context menu of Editor.
+Open the Command Palette (<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>P</kbd>) and search following commands.
+
+- **Minify current CSS file**: to minify current CSS file
+- **Minify selected part of CSS**: to minify selected part of CSS
+- **Minify CSS files in workspace**: to minify all CSS files in workspace
+
+You can also execute these commands from context menu of [Explorer](https://code.visualstudio.com/docs/getstarted/userinterface#_explorer) or Editor.
 
 ## Config
 
