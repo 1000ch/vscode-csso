@@ -2,32 +2,77 @@ import { ExtensionContext, TextDocument, workspace, window, commands } from 'vsc
 import setText from 'vscode-set-text';
 import csso from 'csso';
 
-function canApply(document: TextDocument) {
-  return document.languageId === 'css';
+type Options = csso.MinifyOptions & csso.CompressOptions;
+
+function isCSS({ languageId }: TextDocument): boolean {
+  return languageId === 'css';
+}
+
+function getPluginConfig(): Options {
+  const cssoConfig = workspace.getConfiguration('svgo');
+  const pluginConfig: Options = {
+    restructure: cssoConfig.get('restructure')
+  };
+
+  return pluginConfig;
+}
+
+function optimize(text: string): string {
+  const config = getPluginConfig();
+
+  return csso.minify(text, config).css;
+}
+
+async function optimizeTextDocument(textDocument: TextDocument) {
+  if (!isCSS(textDocument)) {
+    return;
+  }
+
+  const text = optimize(textDocument.getText());
+  const textEditor = await window.showTextDocument(textDocument);
+  await setText(text, textEditor);
+}
+
+async function minify() {
+  if (!window.activeTextEditor) {
+    return;
+  }
+
+  await optimizeTextDocument(window.activeTextEditor.document);
+  await window.showInformationMessage('Minified current CSS file');
+}
+
+async function minifySelected() {
+  if (!window.activeTextEditor) {
+    return;
+  }
+
+  const { document, selections } = window.activeTextEditor;
+
+  await window.activeTextEditor.edit(builder => {
+    for (const selection of selections) {
+      const selectedText = document.getText(selection);
+      builder.replace(selection, optimize(selectedText));
+    }
+  });
+  await window.showInformationMessage('Minified selected CSS');
+}
+
+async function minifyAll() {
+  const textDocuments = workspace.textDocuments.filter(textDocument => {
+    return isCSS(textDocument);
+  });
+
+  await Promise.all(textDocuments.map(textDocument => optimizeTextDocument(textDocument)));
+  await window.showInformationMessage('Minified all CSS files');
 }
 
 export function activate(context: ExtensionContext) {
-  const minify = commands.registerCommand('csso.minify', async () => {
-    if (!window.activeTextEditor) {
-      return;
-    }
-
-    const { document } = window.activeTextEditor;
-
-    if (!canApply(document)) {
-      return;
-    }
-
-    const cssoConfig = workspace.getConfiguration('csso');
-
-    const { css } = csso.minify(document.getText(), {
-      restructure: cssoConfig.get('restructure')
-    })
-
-    await setText(css);
-  });
-
-  context.subscriptions.push(minify);
+  context.subscriptions.push(
+    commands.registerCommand('csso.minify', minify),
+    commands.registerCommand('csso.minify-selected', minifySelected),
+    commands.registerCommand('csso.minify-all', minifyAll),
+  );
 }
 
 export function deactivate() {}

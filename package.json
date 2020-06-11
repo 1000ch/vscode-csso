@@ -19,15 +19,28 @@
   },
   "qna": "https://stackoverflow.com/questions/tagged/vscode+csso",
   "activationEvents": [
-    "onCommand:csso.minify"
+    "onCommand:csso.minify",
+    "onCommand:csso.minify-selected",
+    "onCommand:csso.minify-all"
   ],
   "main": "out/extension.js",
   "contributes": {
     "menus": {
+      "explorer/context": [
+        {
+          "command": "csso.minify-all",
+          "group": "1_modification"
+        }
+      ],
       "editor/context": [
         {
           "when": "resourceLangId == css || editorLangId == css",
           "command": "csso.minify",
+          "group": "1_modification"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "csso.minify-selected",
           "group": "1_modification"
         }
       ]
@@ -35,7 +48,15 @@
     "commands": [
       {
         "command": "csso.minify",
-        "title": "Minify CSS"
+        "title": "Minify current CSS file"
+      },
+      {
+        "command": "csso.minify-selected",
+        "title": "Minify selected part of CSS"
+      },
+      {
+        "command": "csso.minify-all",
+        "title": "Minify CSS files in workspace"
       }
     ],
     "configuration": {
