@@ -1,5 +1,6 @@
 import { ExtensionContext, TextDocument, workspace, window, commands } from 'vscode';
 import setText from 'vscode-set-text';
+import setSelectedText from 'vscode-set-selected-text';
 import csso from 'csso';
 
 type Options = csso.MinifyOptions & csso.CompressOptions;
@@ -47,14 +48,9 @@ async function minifySelected() {
     return;
   }
 
-  const { document, selections } = window.activeTextEditor;
-
-  await window.activeTextEditor.edit(builder => {
-    for (const selection of selections) {
-      const selectedText = document.getText(selection);
-      builder.replace(selection, optimize(selectedText));
-    }
-  });
+  const { document, selection } = window.activeTextEditor;
+  const text = optimize(document.getText(selection));
+  await setSelectedText(text);
   await window.showInformationMessage('Minified selected CSS');
 }
 
