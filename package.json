@@ -6,6 +6,7 @@
   "description": "Minify CSS with CSSO",
   "publisher": "1000ch",
   "author": "1000ch",
+  "icon": "img/icon.png",
   "repository": "https://github.com/1000ch/vscode-csso",
   "homepage": "https://github.com/1000ch/vscode-csso#readme",
   "bugs": "https://github.com/1000ch/vscode-csso/issues",
