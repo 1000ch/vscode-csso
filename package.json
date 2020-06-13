@@ -1,7 +1,7 @@
 {
   "name": "csso",
   "private": true,
-  "version": "1.4.0",
+  "version": "1.4.1",
   "displayName": "csso",
   "description": "Minify CSS with CSSO",
   "publisher": "1000ch",
