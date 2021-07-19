@@ -82,7 +82,7 @@
     "vscode-set-text": "^1.0.0"
   },
   "devDependencies": {
-    "@types/csso": "^3.5.1",
+    "@types/csso": "^4.2.0",
     "@types/vscode": "^1.56.0",
     "typescript": "^4.3.4"
   }
