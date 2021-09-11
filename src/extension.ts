@@ -1,18 +1,18 @@
-import { ExtensionContext, TextDocument, workspace, window, commands } from 'vscode';
+import {ExtensionContext, TextDocument, workspace, window, commands} from 'vscode';
 import setText from 'vscode-set-text';
 import setSelectedText from 'vscode-set-selected-text';
 import csso from 'csso';
 
 type Options = csso.MinifyOptions & csso.CompressOptions;
 
-function isCSS({ languageId }: TextDocument): boolean {
+function isCSS({languageId}: TextDocument): boolean {
   return languageId === 'css';
 }
 
 function getPluginConfig(): Options {
   const cssoConfig = workspace.getConfiguration('svgo');
   const pluginConfig: Options = {
-    restructure: cssoConfig.get('restructure')
+    restructure: cssoConfig.get('restructure'),
   };
 
   return pluginConfig;
@@ -48,18 +48,16 @@ async function minifySelected() {
     return;
   }
 
-  const { document, selection } = window.activeTextEditor;
+  const {document, selection} = window.activeTextEditor;
   const text = optimize(document.getText(selection));
   await setSelectedText(text);
   await window.showInformationMessage('Minified selected CSS');
 }
 
 async function minifyAll() {
-  const textDocuments = workspace.textDocuments.filter(textDocument => {
-    return isCSS(textDocument);
-  });
+  const textDocuments = workspace.textDocuments.filter(textDocument => isCSS(textDocument));
 
-  await Promise.all(textDocuments.map(textDocument => optimizeTextDocument(textDocument)));
+  await Promise.all(textDocuments.map(async textDocument => optimizeTextDocument(textDocument)));
   await window.showInformationMessage('Minified all CSS files');
 }
 
@@ -71,4 +69,5 @@ export function activate(context: ExtensionContext) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export function deactivate() {}
