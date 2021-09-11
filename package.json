@@ -1,55 +1,26 @@
 {
   "name": "csso",
-  "private": true,
-  "version": "1.5.0",
   "displayName": "csso",
+  "version": "1.5.0",
+  "private": true,
   "description": "Minify CSS with CSSO",
-  "publisher": "1000ch",
+  "homepage": "https://github.com/1000ch/vscode-csso#readme",
+  "bugs": "https://github.com/1000ch/vscode-csso/issues",
+  "repository": "https://github.com/1000ch/vscode-csso",
+  "license": "MIT",
+  "qna": "https://stackoverflow.com/questions/tagged/vscode+csso",
   "author": {
     "name": "Shogo Sensui",
     "email": "shogosensui@gmail.com",
     "web": "https://github.com/1000ch"
   },
-  "icon": "img/icon.png",
-  "repository": "https://github.com/1000ch/vscode-csso",
-  "homepage": "https://github.com/1000ch/vscode-csso#readme",
-  "bugs": "https://github.com/1000ch/vscode-csso/issues",
-  "license": "MIT",
+  "publisher": "1000ch",
+  "main": "out/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run build",
     "build": "tsc"
   },
-  "engines": {
-    "vscode": "^1.56.0"
-  },
-  "qna": "https://stackoverflow.com/questions/tagged/vscode+csso",
-  "activationEvents": [
-    "onCommand:csso.minify",
-    "onCommand:csso.minify-selected",
-    "onCommand:csso.minify-all"
-  ],
-  "main": "out/extension.js",
   "contributes": {
-    "menus": {
-      "explorer/context": [
-        {
-          "command": "csso.minify-all",
-          "group": "1_modification"
-        }
-      ],
-      "editor/context": [
-        {
-          "when": "resourceLangId == css || editorLangId == css",
-          "command": "csso.minify",
-          "group": "1_modification"
-        },
-        {
-          "when": "editorHasSelection",
-          "command": "csso.minify-selected",
-          "group": "1_modification"
-        }
-      ]
-    },
     "commands": [
       {
         "command": "csso.minify",
@@ -74,16 +45,45 @@
           "description": "Structure optimisations"
         }
       }
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "csso.minify-all",
+          "group": "1_modification"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "resourceLangId == css || editorLangId == css",
+          "command": "csso.minify",
+          "group": "1_modification"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "csso.minify-selected",
+          "group": "1_modification"
+        }
+      ]
     }
   },
+  "activationEvents": [
+    "onCommand:csso.minify",
+    "onCommand:csso.minify-selected",
+    "onCommand:csso.minify-all"
+  ],
   "dependencies": {
     "csso": "^4.2.0",
     "vscode-set-selected-text": "^1.0.0",
     "vscode-set-text": "^1.0.0"
   },
   "devDependencies": {
-    "@types/csso": "^3.5.1",
-    "@types/vscode": "^1.56.0",
-    "typescript": "^4.3.4"
-  }
+    "@types/csso": "^4.2.0",
+    "@types/vscode": "^1.60.0",
+    "typescript": "^4.4.3"
+  },
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "icon": "img/icon.png"
 }
