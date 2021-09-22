@@ -1,6 +1,6 @@
 # vscode-csso
 
-![GitHub Actions Status](https://github.com/1000ch/vscode-csso/workflows/test/badge.svg?branch=master)
+![GitHub Actions Status](https://github.com/1000ch/vscode-csso/workflows/test/badge.svg)
 [![Dependency Status](https://david-dm.org/1000ch/vscode-csso.svg)](https://david-dm.org/1000ch/vscode-csso)
 [![devDependency Status](https://david-dm.org/1000ch/vscode-csso/dev-status.svg)](https://david-dm.org/1000ch/vscode-csso?type=dev)
 
