@@ -10,6 +10,12 @@ Minify CSS with [CSSO](http://github.com/css/csso).
 
 Execute `Extensions: Install Extensions` command from [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) (<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>P</kbd>) and search by **csso**.
 
+Also you can install this extension locally by putting symbolic link from `~/.vscode/extensions` to `~/path/to/this/repo` like below.
+
+```bash
+$ ln -s ~/workspace/github.com/1000ch/vscode-csso  ~/.vscode/extensions/1000ch.csso-local
+```
+
 ## Usage
 
 Open the Command Palette (<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>P</kbd>) and search following commands.
