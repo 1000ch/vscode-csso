@@ -1,7 +1,7 @@
 {
   "name": "csso",
   "displayName": "csso",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "private": true,
   "description": "Minify CSS with CSSO",
   "homepage": "https://github.com/1000ch/vscode-csso#readme",
