@@ -25,15 +25,15 @@
     "commands": [
       {
         "command": "csso.minify",
-        "title": "Minify current CSS file"
+        "title": "csso: Minify current CSS file"
       },
       {
         "command": "csso.minify-selected",
-        "title": "Minify selected part of CSS"
+        "title": "csso: Minify selected part of CSS"
       },
       {
         "command": "csso.minify-all",
-        "title": "Minify CSS files in workspace"
+        "title": "csso: Minify CSS files in workspace"
       }
     ],
     "configuration": {

@@ -20,9 +20,9 @@ $ ln -s ~/workspace/github.com/1000ch/vscode-csso  ~/.vscode/extensions/1000ch.c
 
 Open the Command Palette (<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>P</kbd>) and search following commands.
 
-- **Minify current CSS file**: to minify current CSS file
-- **Minify selected part of CSS**: to minify selected part of CSS
-- **Minify CSS files in workspace**: to minify all CSS files in workspace
+- **csso: Minify current CSS file**: to minify current CSS file
+- **csso: Minify selected part of CSS**: to minify selected part of CSS
+- **csso: Minify CSS files in workspace**: to minify all CSS files in workspace
 
 You can also execute these commands from context menu of [Explorer](https://code.visualstudio.com/docs/getstarted/userinterface#_explorer) or Editor.
 
