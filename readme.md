@@ -22,7 +22,6 @@ Open the Command Palette (<kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>P</kbd>) and sear
 
 - **csso: Minify current CSS file**: to minify current CSS file
 - **csso: Minify selected part of CSS**: to minify selected part of CSS
-- **csso: Minify CSS files in workspace**: to minify all CSS files in workspace
 
 You can also execute these commands from context menu of [Explorer](https://code.visualstudio.com/docs/getstarted/userinterface#_explorer) or Editor.
 

@@ -54,18 +54,10 @@ async function minifySelected() {
   await window.showInformationMessage('Minified selected CSS');
 }
 
-async function minifyAll() {
-  const textDocuments = workspace.textDocuments.filter(textDocument => isCSS(textDocument));
-
-  await Promise.all(textDocuments.map(async textDocument => optimizeTextDocument(textDocument)));
-  await window.showInformationMessage('Minified all CSS files');
-}
-
 export function activate(context: ExtensionContext) {
   context.subscriptions.push(
     commands.registerCommand('csso.minify', minify),
     commands.registerCommand('csso.minify-selected', minifySelected),
-    commands.registerCommand('csso.minify-all', minifyAll),
   );
 }
 

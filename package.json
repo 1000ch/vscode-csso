@@ -30,10 +30,6 @@
       {
         "command": "csso.minify-selected",
         "title": "csso: Minify selected part of CSS"
-      },
-      {
-        "command": "csso.minify-all",
-        "title": "csso: Minify CSS files in workspace"
       }
     ],
     "configuration": {
@@ -48,12 +44,6 @@
       }
     },
     "menus": {
-      "explorer/context": [
-        {
-          "command": "csso.minify-all",
-          "group": "1_modification"
-        }
-      ],
       "editor/context": [
         {
           "when": "resourceLangId == css || editorLangId == css",
@@ -70,8 +60,7 @@
   },
   "activationEvents": [
     "onCommand:csso.minify",
-    "onCommand:csso.minify-selected",
-    "onCommand:csso.minify-all"
+    "onCommand:csso.minify-selected"
   ],
   "xo": {
     "space": 2
