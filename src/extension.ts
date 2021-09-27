@@ -1,4 +1,5 @@
-import {ExtensionContext, TextDocument, workspace, window, commands} from 'vscode';
+import {workspace, window, commands} from 'vscode';
+import type {ExtensionContext, TextDocument, TextEditor} from 'vscode';
 import setText from 'vscode-set-text';
 import setSelectedText from 'vscode-set-selected-text';
 import csso from 'csso';
@@ -24,14 +25,14 @@ function optimize(text: string): string {
   return csso.minify(text, config).css;
 }
 
-async function optimizeTextDocument(textDocument: TextDocument) {
-  if (!isCSS(textDocument)) {
+async function processTextEditor(textEditor: TextEditor) {
+  if (!isCSS(textEditor.document)) {
     return;
   }
 
-  const text = optimize(textDocument.getText());
-  const textEditor = await window.showTextDocument(textDocument);
-  await setText(text, textEditor);
+  const text = textEditor.document.getText();
+  const optimizedText = optimize(text);
+  await setText(optimizedText, textEditor);
 }
 
 async function minify() {
@@ -39,8 +40,16 @@ async function minify() {
     return;
   }
 
-  await optimizeTextDocument(window.activeTextEditor.document);
-  await window.showInformationMessage('Minified current CSS file');
+  try {
+    await processTextEditor(window.activeTextEditor);
+    await window.showInformationMessage('Minified current CSS file');
+  } catch (error: unknown) {
+    console.error(error);
+
+    if (error instanceof Error) {
+      await window.showErrorMessage(error.message);
+    }
+  }
 }
 
 async function minifySelected() {
@@ -48,10 +57,18 @@ async function minifySelected() {
     return;
   }
 
-  const {document, selection} = window.activeTextEditor;
-  const text = optimize(document.getText(selection));
-  await setSelectedText(text);
-  await window.showInformationMessage('Minified selected CSS');
+  try {
+    const {document, selection} = window.activeTextEditor;
+    const text = optimize(document.getText(selection));
+    await setSelectedText(text);
+    await window.showInformationMessage('Minified selected CSS');
+  } catch (error: unknown) {
+    console.error(error);
+
+    if (error instanceof Error) {
+      await window.showErrorMessage(error.message);
+    }
+  }
 }
 
 export function activate(context: ExtensionContext) {
