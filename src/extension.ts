@@ -6,7 +6,7 @@ import csso from 'csso';
 
 type Options = csso.MinifyOptions & csso.CompressOptions;
 
-function isCSS({languageId}: TextDocument): boolean {
+function isCss({languageId}: TextDocument): boolean {
   return languageId === 'css';
 }
 
@@ -26,7 +26,7 @@ function optimize(text: string): string {
 }
 
 async function processTextEditor(textEditor: TextEditor) {
-  if (!isCSS(textEditor.document)) {
+  if (!isCss(textEditor.document)) {
     return;
   }
 
