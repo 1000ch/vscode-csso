@@ -1,8 +1,8 @@
 import {workspace, window, commands} from 'vscode';
-import type {ExtensionContext, TextDocument, TextEditor} from 'vscode';
+import type {ExtensionContext, TextDocument} from 'vscode';
 import setText from 'vscode-set-text';
 import setSelectedText from 'vscode-set-selected-text';
-import csso from 'csso';
+import {minify} from 'csso';
 
 type Options = csso.MinifyOptions & csso.CompressOptions;
 
@@ -19,29 +19,21 @@ function getPluginConfig(): Options {
   return pluginConfig;
 }
 
-function optimize(text: string): string {
-  const config = getPluginConfig();
-
-  return csso.minify(text, config).css;
-}
-
-async function processTextEditor(textEditor: TextEditor) {
-  if (!isCss(textEditor.document)) {
-    return;
-  }
-
-  const text = textEditor.document.getText();
-  const optimizedText = optimize(text);
-  await setText(optimizedText, textEditor);
-}
-
-async function minify() {
+async function commandMinify(): Promise<void> {
   if (!window.activeTextEditor) {
     return;
   }
 
+  if (!isCss(window.activeTextEditor.document)) {
+    return;
+  }
+
   try {
-    await processTextEditor(window.activeTextEditor);
+    const config: Options = getPluginConfig();
+    const {document} = window.activeTextEditor;
+    const result = minify(document.getText(), config);
+
+    await setText(result.css, window.activeTextEditor);
     await window.showInformationMessage('Minified current CSS file');
   } catch (error: unknown) {
     console.error(error);
@@ -52,15 +44,17 @@ async function minify() {
   }
 }
 
-async function minifySelected() {
+async function commandMinifySelected(): Promise<void> {
   if (!window.activeTextEditor) {
     return;
   }
 
   try {
+    const config: Options = getPluginConfig();
     const {document, selection} = window.activeTextEditor;
-    const text = optimize(document.getText(selection));
-    await setSelectedText(text);
+    const result = minify(document.getText(selection), config);
+
+    await setSelectedText(result.css, window.activeTextEditor);
     await window.showInformationMessage('Minified selected CSS');
   } catch (error: unknown) {
     console.error(error);
@@ -73,8 +67,8 @@ async function minifySelected() {
 
 export function activate(context: ExtensionContext) {
   context.subscriptions.push(
-    commands.registerCommand('csso.minify', minify),
-    commands.registerCommand('csso.minify-selected', minifySelected),
+    commands.registerCommand('csso.minify', commandMinify),
+    commands.registerCommand('csso.minify-selected', commandMinifySelected),
   );
 }
 
