@@ -66,18 +66,18 @@
     "space": 2
   },
   "dependencies": {
-    "csso": "^5.0.0",
+    "csso": "^5.0.2",
     "vscode-set-selected-text": "^1.0.0",
     "vscode-set-text": "^1.0.0"
   },
   "devDependencies": {
     "@types/csso": "^5.0.0",
-    "@types/vscode": "^1.62.0",
-    "typescript": "^4.4.3",
-    "xo": "^0.46.4"
+    "@types/vscode": "^1.63.1",
+    "typescript": "^4.5.4",
+    "xo": "^0.47.0"
   },
   "engines": {
-    "vscode": "^1.62.0"
+    "vscode": "^1.63.1"
   },
   "icon": "img/icon.png"
 }
