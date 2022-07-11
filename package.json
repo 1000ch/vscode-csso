@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "@types/csso": "^5.0.0",
-    "@types/vscode": "^1.68.0",
+    "@types/vscode": "^1.69.0",
     "typescript": "^4.7.3",
     "xo": "^0.50.0"
   },
