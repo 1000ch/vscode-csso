@@ -1,5 +1,10 @@
-import {workspace, window, commands} from 'vscode';
-import type {ExtensionContext, TextDocument} from 'vscode';
+import {
+  workspace,
+  window,
+  commands,
+  type ExtensionContext,
+  type TextDocument,
+} from 'vscode';
 import setText from 'vscode-set-text';
 import setSelectedText from 'vscode-set-selected-text';
 import {minify} from 'csso';
