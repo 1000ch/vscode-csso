@@ -1,4 +1,4 @@
-# vscode-csso ![GitHub Actions Status](https://github.com/1000ch/vscode-csso/workflows/test/badge.svg)
+# vscode-csso [![test](https://github.com/1000ch/vscode-csso/actions/workflows/test.yml/badge.svg)](https://github.com/1000ch/vscode-csso/actions/workflows/test.yml)
 
 Minify CSS with [CSSO](http://github.com/css/csso).
 
